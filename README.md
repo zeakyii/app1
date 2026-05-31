@@ -1,7 +1,7 @@
 # app1
-# Nebula Social
+#  Social App
 
-Nebula Social is a private, local-first prototype for an all-ages decentralized messaging app.
+This is a Social: a private, local-first prototype for an all-ages decentralised messaging app.
 
 Open `index.html` in a browser to use it. No server or dependency install is required.
 
