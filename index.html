@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f4ee">
+    <title>Nebula Social</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar" aria-label="Account and rooms">
+        <section class="identity-panel">
+          <div class="brand-row">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div>
+              <p class="eyebrow">Private mesh</p>
+              <h1>Nebula</h1>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Display name</span>
+            <input id="displayName" autocomplete="nickname" maxlength="24">
+          </label>
+
+          <label class="field">
+            <span>Age mode</span>
+            <select id="ageMode">
+              <option value="kid">Kid</option>
+              <option value="teen">Teen</option>
+              <option value="adult">Adult</option>
+              <option value="family">Family</option>
+            </select>
+          </label>
+
+          <div class="safety-strip" id="safetyStrip"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Rooms</h2>
+            <button class="icon-button" id="newRoomBtn" title="Create room" aria-label="Create room">+</button>
+          </div>
+          <div class="room-list" id="roomList"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Trusted Contacts</h2>
+            <button class="icon-button" id="addContactBtn" title="Add contact" aria-label="Add contact">+</button>
+          </div>
+          <div class="contact-list" id="contactList"></div>
+        </section>
+      </aside>
+
+      <section class="workspace" aria-label="Conversation">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="roomStatus">Local-first room</p>
+            <h2 id="activeRoomName">Family Circle</h2>
+          </div>
+          <div class="topbar-actions">
+            <button id="copyInviteBtn">Invite</button>
+            <button id="exportBtn">Export</button>
+            <label class="import-button">
+              Import
+              <input id="importInput" type="file" accept="application/json">
+            </label>
+          </div>
+        </header>
+
+        <section class="feature-band" aria-label="Privacy architecture">
+          <article>
+            <strong>No central feed</strong>
+            <span>Each room keeps its own local log and invite code.</span>
+          </article>
+          <article>
+            <strong>Private by default</strong>
+            <span>No public discovery, ads, likes, or follower counts.</span>
+          </article>
+          <article>
+            <strong>All-age controls</strong>
+            <span>Kid and teen modes add trusted-contact and language checks.</span>
+          </article>
+        </section>
+
+        <section class="conversation" id="conversation" aria-live="polite"></section>
+
+        <form class="composer" id="composer">
+          <button type="button" class="icon-button" id="toneBtn" title="Kindness prompt" aria-label="Kindness prompt">?</button>
+          <input id="messageInput" maxlength="280" placeholder="Write a message">
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <aside class="details" aria-label="Safety and peer status">
+        <section class="panel network-card">
+          <div class="mesh-visual" aria-hidden="true">
+            <span class="node node-a"></span>
+            <span class="node node-b"></span>
+            <span class="node node-c"></span>
+            <span class="node node-d"></span>
+            <span class="link link-a"></span>
+            <span class="link link-b"></span>
+            <span class="link link-c"></span>
+          </div>
+          <h2>Room Sync</h2>
+          <p id="peerStatus">Listening for nearby browser peers.</p>
+          <div class="stat-grid">
+            <div><span id="messageCount">0</span><small>messages</small></div>
+            <div><span id="contactCount">0</span><small>trusted</small></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Safety Tools</h2>
+          <div class="tool-list">
+            <button id="pauseRoomBtn">Pause room</button>
+            <button id="clearFlagBtn">Clear flags</button>
+            <button id="guardianBtn">Guardian settings</button>
+          </div>
+          <div class="notice" id="noticeBox"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Build Notes</h2>
+          <ul class="note-list">
+            <li>Transport is swappable: BroadcastChannel now, WebRTC later.</li>
+            <li>Data stays in this browser unless exported or synced.</li>
+            <li>Moderation is local, transparent, and family configurable.</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="modal">
+      <form method="dialog" class="modal-card">
+        <h2 id="modalTitle"></h2>
+        <div id="modalBody"></div>
+        <menu>
+          <button value="cancel">Close</button>
+          <button id="modalConfirm" value="default">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
